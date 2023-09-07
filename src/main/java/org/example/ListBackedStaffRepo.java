@@ -6,7 +6,7 @@ import java.util.List;
 public class ListBackedStaffRepo implements StaffRepo{
 
 
-    public static final List<Staff> staffs = new ArrayList<>();
+    public final static List<Staff> staffs = new ArrayList<>();
 
     @Override
     public List<Staff> getStaffById(String staffId) {
