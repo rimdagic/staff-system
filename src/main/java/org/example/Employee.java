@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Employee extends Staff{
     private int salary;
@@ -16,6 +17,10 @@ public class Employee extends Staff{
         return salary;
     }
 
+    public void setSalary(int salary){
+        this.salary = salary;
+    }
+
     public LocalDate getStarted() {
         return started;
     }
@@ -29,5 +34,9 @@ public class Employee extends Staff{
                 ", salary=" + salary +
                 ", started=" + started +
                 '}';
+    }
+
+    public LocalDate getStartDate(){
+        return started;
     }
 }

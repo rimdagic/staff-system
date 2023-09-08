@@ -2,16 +2,13 @@ package org.example.menu;
 
 import org.example.Employee;
 import org.example.Intern;
-import org.example.Staff;
-import org.example.StaffRepo;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
-
 import static org.example.Main.menuSystem;
 import static org.example.Main.staffRepo;
+import static org.example.Staff.isIdTaken;
 
 public class AddStaffMenu extends Menu implements MenuState{
 
@@ -24,57 +21,58 @@ public class AddStaffMenu extends Menu implements MenuState{
                 new MenuOption(2, "Add new intern", () -> addIntern()),
                 new MenuOption(7, "Quit", () -> System.exit(0))
         );
-
-
-
     }
 
-    public void addEmployee(){
-        System.out.println("\tEmployee full name:");
+    public void addEmployee() {
+        System.out.println("Employee full name:");
         String name = scanner.nextLine();
 
-        System.out.println("\tGender: (m / f)");
+        System.out.println("Gender: (m / f)");
         String gender = scanner.nextLine();
 
-        System.out.println("\tUnique staff ID:");
-        String staffId = scanner.nextLine();
+        String staffId;
+        do {
+            System.out.println("Unique staff ID:");
+            staffId = scanner.nextLine();
+        } while (isIdTaken(staffId));
 
-        System.out.println("\tSalary:");
+        System.out.println("Salary:");
         int salary = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("\tStart date: (yyyy-mm-dd)");
+        System.out.println("Start date: (yyyy-mm-dd)");
         String startDate = scanner.nextLine();
 
         staffRepo.add(new Employee(name, gender, staffId, salary, LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE)));
 
-        System.out.println("\tEmployee successfully created!\n\t" + staffRepo.getStaffById(staffId) +"\n");
+        System.out.println("Employee successfully created!\n" + staffRepo.getStaffById(staffId) + "\n");
 
-        menuSystem.setState(new MainMenu());
+        menuSystem.setState(new ContinueMenu());
     }
 
     public void addIntern(){
-        System.out.println("\tIntern full name:");
+        System.out.println("Intern full name:");
         String name = scanner.nextLine();
 
-        System.out.println("\tGender: (m / f)");
+        System.out.println("Gender: (m / f)");
         String gender = scanner.nextLine();
 
-        System.out.println("\tUnique staff ID:");
-        String staffId = scanner.nextLine();
+        String staffId;
+        do {
+            System.out.println("Unique staff ID:");
+            staffId = scanner.nextLine();
+        } while (isIdTaken(staffId));
 
-        System.out.println("\tAppreciative words:");
+        System.out.println("Appreciative words:");
         String praise = scanner.nextLine();
 
-        System.out.println("\tEnd date: (yyyy-mm-dd)");
+        System.out.println("End date: (yyyy-mm-dd)");
         String endDate = scanner.nextLine();
 
         staffRepo.add(new Intern(name, gender, staffId, LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE), praise));
 
-        System.out.println("\tIntern successfully created!\n\t" + staffRepo.getStaffById(staffId) +"\n");
+        System.out.println("Intern successfully created!\n" + staffRepo.getStaffById(staffId) +"\n");
 
-        menuSystem.setState(new MainMenu());
+        menuSystem.setState(new ContinueMenu());
     }
-
-
 }

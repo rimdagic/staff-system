@@ -21,6 +21,10 @@ public class Intern extends Staff {
         return praise;
     }
 
+    public void setPraise(String praise){
+        this.praise = praise;
+    }
+
     @Override
     public String toString() {
         return "Intern{" +

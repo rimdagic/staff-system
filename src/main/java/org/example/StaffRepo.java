@@ -8,4 +8,16 @@ public interface StaffRepo {
     Staff add(Staff staff);
 
     List<Staff> getAll();
+
+    void remove(String staffId);
+
+    int size();
+
+    List<Employee> getAllEmployeesByDate();
+
+    int getMedianSalaryMale();
+
+    int getMedianSalaryFemale();
+
+    int getMedianSalary();
 }
