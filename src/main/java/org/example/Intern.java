@@ -4,17 +4,17 @@ import java.time.LocalDate;
 
 public class Intern extends Staff {
 
-    private LocalDate ending;
+    private LocalDate endDate;
     private String praise;
 
-    public Intern(String fullName, String gender, String staffId, LocalDate ending, String praise) {
+    public Intern(String fullName, String gender, String staffId, LocalDate endDate, String praise) {
         super(fullName, gender, staffId);
-        this.ending = ending;
+        this.endDate = endDate;
         this.praise = praise;
     }
 
-    public LocalDate getEnding() {
-        return ending;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
     public String getPraise() {
@@ -31,13 +31,7 @@ public class Intern extends Staff {
                 this.getStaffId() + " - " +
                 this.getFullName() +
                 ", gender: " + this.getGender() +
-                ", last day: " + ending +
+                ", last day: " + endDate +
                 ", praise: " + praise;
     }
-
-
-
-
-
-
 }

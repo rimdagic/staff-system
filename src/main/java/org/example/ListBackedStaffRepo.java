@@ -34,7 +34,7 @@ public class ListBackedStaffRepo implements StaffRepo{
         return returnList;
     }
 
-    public List<Employee> getAllEmployeesByDate() {
+    public List<Employee> printAllEmployeesByDate() {
         List<Employee> employeeList = new ArrayList<>();
         for (Staff staff : staffs) {
             if (staff instanceof Employee) {
@@ -43,7 +43,6 @@ public class ListBackedStaffRepo implements StaffRepo{
         }
 
         Collections.sort(employeeList, (e1, e2) -> e1.getStartDate().compareTo(e2.getStartDate()));
-
         for(Employee employee : employeeList){
             System.out.println(employee);
         }
@@ -52,39 +51,20 @@ public class ListBackedStaffRepo implements StaffRepo{
     }
 
     @Override
-    public int getMedianSalaryMale() {
+    public int getMedianSalaryByGender(String gender) {
         double totalSalary = 0;
-        int numberOfMales = 0;
+        int individualCount = 0;
         for( Staff staff : staffs ){
             if (staff instanceof Employee){
-                if(staff.getGender().equals("m")){
-                    numberOfMales++;
+                if(staff.getGender().equals(gender)){
+                    individualCount++;
                     Employee employee = (Employee) staff;
                     totalSalary = totalSalary + employee.getSalary();
                 }
             }
         }
 
-        int calculatedReturn = (int) Math.round(totalSalary) / numberOfMales;
-        System.out.println(calculatedReturn);
-        return calculatedReturn;
-    }
-
-    @Override
-    public int getMedianSalaryFemale() {
-        double totalSalary = 0;
-        int numberOfFemales = 0;
-        for( Staff staff : staffs ){
-            if (staff instanceof Employee){
-                if(staff.getGender().equals("f")){
-                    numberOfFemales++;
-                    Employee employee = (Employee) staff;
-                    totalSalary = totalSalary + employee.getSalary();
-                }
-            }
-        }
-
-        int calculatedReturn = (int) Math.round(totalSalary) / numberOfFemales;
+        int calculatedReturn = (int) Math.round(totalSalary) / individualCount;
         System.out.println(calculatedReturn);
         return calculatedReturn;
     }
@@ -106,21 +86,6 @@ public class ListBackedStaffRepo implements StaffRepo{
         return calculatedReturn;
     }
 
-    @Override
-    public List<Employee> getEmployees() {
-        List<Employee> employeeList = new ArrayList<>();
-        for (Staff staff : staffs) {
-            if (staff instanceof Employee) {
-                employeeList.add((Employee) staff);
-            }
-        }
-        return employeeList;
-    }
-
-    @Override
-    public List<Intern> getInterns() {
-        return null;
-    }
 
 
     public void remove(String staffId){

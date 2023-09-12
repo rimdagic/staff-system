@@ -48,9 +48,8 @@ public class MainMenu extends Menu implements MenuState{
     }
 
     public void listEmployees(){
-        staffRepo.getAllEmployeesByDate();
+
+        staffRepo.printAllEmployeesByDate();
         menuSystem.setState(new ContinueMenu());
     }
-
-
 }

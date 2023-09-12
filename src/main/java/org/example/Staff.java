@@ -33,7 +33,6 @@ public class Staff {
         String input;
         boolean isTaken;
         do {
-           // isTaken = false;
             System.out.print("Enter new staff ID: ");
             input = scanner.nextLine();
 
@@ -60,7 +59,6 @@ public class Staff {
     };
 
     public void editStaffById(String staffId) {
-
         String input = "";
         System.out.println("Edit staff");
         for(Staff staff : staffRepo.getAll()){

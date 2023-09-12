@@ -13,15 +13,9 @@ public interface StaffRepo {
 
     int size();
 
-    List<Employee> getAllEmployeesByDate();
+    List<Employee> printAllEmployeesByDate();
 
-    int getMedianSalaryMale();
-
-    int getMedianSalaryFemale();
+    int getMedianSalaryByGender(String gender);
 
     int getMedianSalary();
-
-    List<Employee> getEmployees();
-
-    List<Intern> getInterns();
 }

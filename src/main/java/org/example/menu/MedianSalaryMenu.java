@@ -6,7 +6,6 @@ import static org.example.Main.menuSystem;
 import static org.example.Main.staffRepo;
 
 public class MedianSalaryMenu extends Menu implements MenuState {
-
     Scanner scanner = new Scanner(System.in);
 
     public MedianSalaryMenu() {
@@ -16,7 +15,6 @@ public class MedianSalaryMenu extends Menu implements MenuState {
                 new MenuOption(1, "Median salary", () -> medianSalary()),
                 new MenuOption(2, "Median salary among female employees", () -> medianSalaryFemale()),
                 new MenuOption(3, "Median salary among male employees", () -> medianSalaryMale())
-               // new MenuOption(7, "Quit", () -> System.exit(0))
         );
     }
 
@@ -28,13 +26,13 @@ public class MedianSalaryMenu extends Menu implements MenuState {
 
     public void medianSalaryFemale(){
         System.out.println("\nFemale median salary: ");
-        staffRepo.getMedianSalaryFemale();
+        staffRepo.getMedianSalaryByGender("f");
         menuSystem.setState(new ContinueMenu());
     }
 
     public void medianSalaryMale(){
         System.out.println("\nMale median salary: ");
-        staffRepo.getMedianSalaryMale();
+        staffRepo.getMedianSalaryByGender("m");
         menuSystem.setState(new ContinueMenu());
     }
 }

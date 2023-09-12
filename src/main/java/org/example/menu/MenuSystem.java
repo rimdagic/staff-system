@@ -20,9 +20,4 @@ public class MenuSystem implements MenuState{
     public void execute() {
         activeMenu.execute();
     }
-
-    @Override
-    public String getText() {
-        return null;
-    }
 }
