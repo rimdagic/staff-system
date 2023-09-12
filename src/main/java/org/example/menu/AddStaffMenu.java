@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import static org.example.Main.menuSystem;
 import static org.example.Main.staffRepo;
-import static org.example.Staff.isIdTaken;
+import static org.example.Staff.idIsTaken;
 
 public class AddStaffMenu extends Menu implements MenuState{
 
@@ -18,8 +18,8 @@ public class AddStaffMenu extends Menu implements MenuState{
         super("Add new staff\n");
         this.menuOptions = List.of(
                 new MenuOption(1, "Add new employee", () -> addEmployee()),
-                new MenuOption(2, "Add new intern", () -> addIntern()),
-                new MenuOption(7, "Quit", () -> System.exit(0))
+                new MenuOption(2, "Add new intern", () -> addIntern())
+                //new MenuOption(7, "Quit", () -> System.exit(0))
         );
     }
 
@@ -34,7 +34,7 @@ public class AddStaffMenu extends Menu implements MenuState{
         do {
             System.out.println("Unique staff ID:");
             staffId = scanner.nextLine();
-        } while (isIdTaken(staffId));
+        } while (idIsTaken(staffId));
 
         System.out.println("Salary:");
         int salary = scanner.nextInt();
@@ -44,9 +44,7 @@ public class AddStaffMenu extends Menu implements MenuState{
         String startDate = scanner.nextLine();
 
         staffRepo.add(new Employee(name, gender, staffId, salary, LocalDate.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE)));
-
         System.out.println("Employee successfully created!\n" + staffRepo.getStaffById(staffId) + "\n");
-
         menuSystem.setState(new ContinueMenu());
     }
 
@@ -61,7 +59,7 @@ public class AddStaffMenu extends Menu implements MenuState{
         do {
             System.out.println("Unique staff ID:");
             staffId = scanner.nextLine();
-        } while (isIdTaken(staffId));
+        } while (idIsTaken(staffId));
 
         System.out.println("Appreciative words:");
         String praise = scanner.nextLine();
@@ -70,9 +68,7 @@ public class AddStaffMenu extends Menu implements MenuState{
         String endDate = scanner.nextLine();
 
         staffRepo.add(new Intern(name, gender, staffId, LocalDate.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE), praise));
-
         System.out.println("Intern successfully created!\n" + staffRepo.getStaffById(staffId) +"\n");
-
         menuSystem.setState(new ContinueMenu());
     }
 }

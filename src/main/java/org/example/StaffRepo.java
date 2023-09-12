@@ -20,4 +20,8 @@ public interface StaffRepo {
     int getMedianSalaryFemale();
 
     int getMedianSalary();
+
+    List<Employee> getEmployees();
+
+    List<Intern> getInterns();
 }

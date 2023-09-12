@@ -1,7 +1,6 @@
 package org.example;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Employee extends Staff{
     private int salary;
@@ -27,13 +26,12 @@ public class Employee extends Staff{
 
     @Override
     public String toString() {
-        return "Employee{" +
-                ", staffId=" + this.getStaffId() +
-                ", fullName=" + this.getFullName() +
-                ", gender=" + this.getGender() +
-                ", salary=" + salary +
-                ", started=" + started +
-                '}';
+        return "Employee: " +
+                this.getStaffId() + " - "+
+                 this.getFullName() +
+                ", gender: " + this.getGender() +
+                ", salary: " + salary +
+                ", started: " + started;
     }
 
     public LocalDate getStartDate(){

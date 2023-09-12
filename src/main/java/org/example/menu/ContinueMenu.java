@@ -9,7 +9,8 @@ public class ContinueMenu extends Menu implements MenuState{
         super(" ");
         this.menuOptions = List.of(
                 new MenuOption(1, "Main menu", () -> menuSystem = new MenuSystem(new MainMenu())),
-                new MenuOption(2, "Exit", () -> System.exit(0)));
+                //new MenuOption(2, "Back to " + lastMenu.getText(), () -> menuSystem.setState(lastMenu)));
+                new MenuOption(0, "Quit", () -> System.exit(0)));
 
     }
 }

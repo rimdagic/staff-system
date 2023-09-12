@@ -27,12 +27,17 @@ public class Intern extends Staff {
 
     @Override
     public String toString() {
-        return "Intern{" +
-                ", staffId=" + this.getStaffId() +
-                ", fullName=" + this.getFullName() +
-                ", gender=" + this.getGender() +
-                ", ending=" + ending +
-                ", praise='" + praise + '\'' +
-                '}';
+        return "Intern: " +
+                this.getStaffId() + " - " +
+                this.getFullName() +
+                ", gender: " + this.getGender() +
+                ", last day: " + ending +
+                ", praise: " + praise;
     }
+
+
+
+
+
+
 }

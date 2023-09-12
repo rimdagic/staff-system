@@ -34,4 +34,8 @@ public abstract class Menu implements MenuState {
         }
         System.out.println(menuText);
     }
+
+    public String getText(){
+        return name;
+    }
 }

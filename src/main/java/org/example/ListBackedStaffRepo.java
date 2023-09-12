@@ -6,8 +6,7 @@ import java.util.List;
 
 public class ListBackedStaffRepo implements StaffRepo{
 
-
-    public final static List<Staff> staffs = new ArrayList<>();
+    private final static List<Staff> staffs = new ArrayList<>();
 
     @Override
     public List<Staff> getStaffById(String staffId) {
@@ -30,14 +29,12 @@ public class ListBackedStaffRepo implements StaffRepo{
     public List<Staff> getAll() {
         List<Staff> returnList = new ArrayList<>();
         for(Staff staff : staffs){
-            System.out.println(staff);
             returnList.add(staff);
         }
         return returnList;
     }
 
     public List<Employee> getAllEmployeesByDate() {
-
         List<Employee> employeeList = new ArrayList<>();
         for (Staff staff : staffs) {
             if (staff instanceof Employee) {
@@ -109,13 +106,28 @@ public class ListBackedStaffRepo implements StaffRepo{
         return calculatedReturn;
     }
 
+    @Override
+    public List<Employee> getEmployees() {
+        List<Employee> employeeList = new ArrayList<>();
+        for (Staff staff : staffs) {
+            if (staff instanceof Employee) {
+                employeeList.add((Employee) staff);
+            }
+        }
+        return employeeList;
+    }
+
+    @Override
+    public List<Intern> getInterns() {
+        return null;
+    }
 
 
     public void remove(String staffId){
         for( Staff staff : staffs){
             if (staff.getStaffId().equals(staffId)){
                 staffs.remove(staff);
-                System.out.println("Successfully removed "+ staff);
+                System.out.println("Successfully removed "+ staff+"\n");
                 break;
             }
         }

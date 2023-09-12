@@ -1,5 +1,8 @@
 package org.example.menu;
 
+import org.example.Employee;
+import org.example.Intern;
+import org.example.Staff;
 import java.util.List;
 import java.util.Scanner;
 import static org.example.Main.*;
@@ -13,15 +16,27 @@ public class MainMenu extends Menu implements MenuState{
                 new MenuOption(2, "Remove staff", () -> removeStaff()),
                 new MenuOption(3, "Edit staff", () -> menuSystem.setState(new EditStaffMenu())),
                 new MenuOption(4, "Total number of staff", () -> totalNumberOfStaff()),
-                new MenuOption(5, "Median salary", () -> menuSystem.setState(new MedianSalaryMenu())),
+                new MenuOption(5, "Salary statistics", () -> menuSystem.setState(new MedianSalaryMenu())),
                 new MenuOption(6, "List of employees by date of employment", () -> listEmployees()),
-                new MenuOption(7, "Quit", () -> System.exit(0))
+                new MenuOption(0, "Quit", () -> System.exit(0))
         );
     }
 
     public void removeStaff(){
             Scanner scanner = new Scanner(System.in);
-            staffRepo.getAll();
+        System.out.println("\nEmployees:");
+            for( Staff staff : staffRepo.getAll()){
+                if(staff instanceof Employee) {
+                    System.out.println(staff.getStaffId() + " " + staff.getFullName());
+                }
+            }
+        System.out.println("\nInterns:");
+        for( Staff staff : staffRepo.getAll()){
+            if(staff instanceof Intern) {
+                System.out.println(staff.getStaffId() + " " + staff.getFullName());
+            }
+        }
+
             System.out.println("\n\tEnter staff ID to remove staff:");
             String staffId = scanner.nextLine();
             staffRepo.remove(staffId);
@@ -34,6 +49,8 @@ public class MainMenu extends Menu implements MenuState{
 
     public void listEmployees(){
         staffRepo.getAllEmployeesByDate();
+        menuSystem.setState(new ContinueMenu());
     }
+
 
 }
