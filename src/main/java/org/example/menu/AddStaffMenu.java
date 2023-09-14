@@ -19,7 +19,6 @@ public class AddStaffMenu extends Menu implements MenuState{
         this.menuOptions = List.of(
                 new MenuOption(1, "Add new employee", () -> addEmployee()),
                 new MenuOption(2, "Add new intern", () -> addIntern())
-                //new MenuOption(7, "Quit", () -> System.exit(0))
         );
     }
 

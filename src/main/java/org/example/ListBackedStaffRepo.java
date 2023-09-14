@@ -1,8 +1,8 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class ListBackedStaffRepo implements StaffRepo{
 
@@ -12,7 +12,7 @@ public class ListBackedStaffRepo implements StaffRepo{
     public List<Staff> getStaffById(String staffId) {
         List<Staff> returnList = new ArrayList<>();
         for(Staff staff : staffs){
-            if(staff.getStaffId() == staffId){
+            if(Objects.equals(staff.getStaffId(), staffId)){
                 returnList.add(staff);
             }
         }
@@ -27,13 +27,10 @@ public class ListBackedStaffRepo implements StaffRepo{
 
     @Override
     public List<Staff> getAll() {
-        List<Staff> returnList = new ArrayList<>();
-        for(Staff staff : staffs){
-            returnList.add(staff);
-        }
-        return returnList;
+        return new ArrayList<>(staffs);
     }
 
+    @Override
     public List<Employee> printAllEmployeesByDate() {
         List<Employee> employeeList = new ArrayList<>();
         for (Staff staff : staffs) {
@@ -42,7 +39,7 @@ public class ListBackedStaffRepo implements StaffRepo{
             }
         }
 
-        Collections.sort(employeeList, (e1, e2) -> e1.getStartDate().compareTo(e2.getStartDate()));
+        employeeList.sort((e1, e2) -> e1.getStartDate().compareTo(e2.getStartDate()));
         for(Employee employee : employeeList){
             System.out.println(employee);
         }
@@ -74,10 +71,9 @@ public class ListBackedStaffRepo implements StaffRepo{
         double totalSalary = 0;
         int numberOfEmployees = 0;
         for( Staff staff : staffs ){
-            if (staff instanceof Employee){
+            if (staff instanceof Employee employee){
                     numberOfEmployees++;
-                    Employee employee = (Employee) staff;
-                    totalSalary = totalSalary + employee.getSalary();
+                totalSalary = totalSalary + employee.getSalary();
             }
         }
 
@@ -87,7 +83,7 @@ public class ListBackedStaffRepo implements StaffRepo{
     }
 
 
-
+    @Override
     public void remove(String staffId){
         for( Staff staff : staffs){
             if (staff.getStaffId().equals(staffId)){

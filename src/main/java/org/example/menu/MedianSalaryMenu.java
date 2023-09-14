@@ -1,12 +1,12 @@
 package org.example.menu;
 
 import java.util.List;
-import java.util.Scanner;
+
 import static org.example.Main.menuSystem;
 import static org.example.Main.staffRepo;
 
 public class MedianSalaryMenu extends Menu implements MenuState {
-    Scanner scanner = new Scanner(System.in);
+
 
     public MedianSalaryMenu() {
         super("Salary statistics");
